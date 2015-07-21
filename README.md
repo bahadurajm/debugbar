@@ -9,7 +9,7 @@ Create `composer.json` file in your application's root if there is none. Add the
 ```json
 {
     "require": {
-        "maltyxx/debugbar": "^0.0.1"
+        "maltyxx/debugbar": "^1.0.0"
     }
 }
 ```
