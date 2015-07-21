@@ -1,6 +1,6 @@
 {
-    "name": "maltyxx/phpdebugbar",
-    "keywords": ["phpdebugbar", "profiler", "debug", "codeigniter"],
+    "name": "maltyxx/debugbar",
+    "keywords": ["debugbar", "profiler", "debug", "bar", "codeigniter"],
     "description": "PHP Debug Bar for Codeigniter 3",
     "homepage": "https://github.com/maltyxx/phpdebugbar",
     "license": "MIT",
@@ -23,6 +23,6 @@
         "maximebf/debugbar": "^1.0.0"
     },
     "extra": {
-        "installer-name": "phpdebugbar"
+        "installer-name": "debugbar"
     }
 }
