@@ -22,9 +22,7 @@ Create composer.json file in your application's root if there is none. Add the f
 composer update
 ```
 ### Step 2 Configuration
-```txt
 Duplicate configuration file `./application/third_party/debugbar/config/profiler.php` in `./application/config/profiler.php`.
-```
 
 ### Step 3 Examples
 Controller file is located in `./application/core/MY_Controller.php`.
