@@ -1,11 +1,15 @@
+# Debugbar
+Debugbar for Codeigniter 3
+
 ## Requirements
 
 - PHP 5.4.x (Composer requirement)
 - CodeIgniter 3.0.x
 
-## Installation
-
-Create `composer.json` file in your application's root if there is none. Add the following text in the file: 
+### Installation
+### Step 1 Installation by Composer
+Create composer.json file in your application's root if there is none. Add the following text in the file:
+#### Edit /composer.json
 ```json
 {
     "require": {
@@ -13,92 +17,31 @@ Create `composer.json` file in your application's root if there is none. Add the
     }
 }
 ```
-Enable Composer (locate in `./config/config.php`) :
-```php
-$config['composer_autoload'] = FCPATH.'vendor/autoload.php';
+#### Run composer update
+```shell
+composer update
 ```
-In your application, you will first need to load the newly installed package. This is  done easily through the autoloader, but could also be done in your controller with an environment check for maximum optimization. 
-```php
-$autoload['packages'] = array(APPPATH.'third_party/debugbar');
-```
-If you want to log messages and exceptions you can also load console library
-```php
-$autoload['libraries'] = array('console');
-```
-To use it.
-```php
-$this->console->exception(new Exception('test exception'));
-$this->console->debug('Debug message');
-$this->console->info('Info message');
-$this->console->warning('Warning message');
-$this->console->error('Error message');
-```
-Then, enable the profiler like normal.
-```php
-$this->output->enable_profiler(true);
+### Step 2 Configuration
+```txt
+Duplicate configuration file `./application/third_party/debugbar/config/profiler.php` in `./application/config/profiler.php`.
 ```
 
-To complete the installation, add the following header tags :
-```html
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/github.min.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-```
-
-**Important** : If there is a profiler configuration file in your application config directory delete it or CodeIgniter will not load our configuration file.
-
-## Configuration
-
-Configuration file is located in `./third_party/debugbar/config/profiler.php`.
-
-To configure the profiler, read [CodeIgniter's profiler documentation](http://www.codeigniter.com/userguide3/general/profiling.html).
-
-CodeIgniter Debug Bar adds 3 new sections :
-
-- CodeIgniter infos : Display informations about CodeIgniter (version, environment and locale).
-- Messages : Display messages (Console library must be loaded).
-- Exceptions : Display exceptions (Console library must be loaded).
-
-You can configure PHP Debug Bar directly into the profiler configuration file, read [PHP Debug Bar documentation](http://phpdebugbar.com/docs/rendering.html#rendering) for more information.
-
-### Advanced AJAX
-
-By default ajax debug data are send through headers but if you are sending a lot of data it may cause problems with your browser. If you set `open_handler_url` in the configuration file, it will use a storage handler and the open handler to load the data after an ajax request.
-
-Here is an example of an `open_handler_url` setting.
-
-```php
-$config['open_handler_url'] = get_instance()->config->site_url('debug/open_handler');
-```
-
-This code will be in `./controllers/Debug.php`
-
+### Step 3 Examples
+Controller file is located in `./application/core/MY_Controller.php`.
 ```php
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use DebugBar\DebugBar;
-use DebugBar\OpenHandler;
-use DebugBar\Storage\FileStorage;
-
-class Debug extends CI_Controller 
+class MY_Controller extends CI_Controller
 {
-    public function open_handler()
-    {
-        $this->output->enable_profiler(false);
-        $this->config->load('profiler', true);
-        $path = $this->config->item('cache_path', 'profiler');
-		$cache_path = ($path === '') ? APPPATH.'cache/debugbar/' : $path;
-        $debugbar = new DebugBar();
-        $debugbar->setStorage(new FileStorage($cache_path));
-        $openHandler = new OpenHandler($debugbar);
-        $data = $openHandler->handle(null, false, false);
+    public function __construct() {
+        parent::__construct();
 
-        $this->output
-            ->set_content_type('application/json')
-            ->set_output($data);
+        $this->load->add_package_path(APPPATH.'third_party/debugbar');
+        $this->load->library('console');
+        $this->output->enable_profiler(TRUE);
+
+        $this->console->debug('Hello world !');
     }
 }
-
 ```
