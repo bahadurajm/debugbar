@@ -6,21 +6,13 @@ Debugbar for Codeigniter 3
 - PHP 5.4.x (Composer requirement)
 - CodeIgniter 3.0.x
 
-### Installation
+## Installation
 ### Step 1 Installation by Composer
-Create composer.json file in your application's root if there is none. Add the following text in the file:
-#### Edit /composer.json
-```json
-{
-    "require": {
-        "maltyxx/debugbar": "^1.0.0"
-    }
-}
-```
-#### Run composer update
+#### Run composer
 ```shell
-composer update
+composer require maltyxx/debugbar
 ```
+
 ### Step 2 Configuration
 Duplicate configuration file `./application/third_party/debugbar/config/profiler.php` in `./application/config/profiler.php`.
 
