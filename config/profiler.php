@@ -78,7 +78,7 @@ $config['query_toggle_count'] = 25;
 $config['base_url'] = NULL;
 $config['include_vendors'] = FALSE;
 $config['enable_jquery_noconflict'] = FALSE;
-$config['open_handler_url'] = NULL; // Example : get_instance()->config->site_url('debug/open_handler');
+$config['open_handler_url'] = get_instance()->config->site_url('debug/open_handler');
 
 /*
   |--------------------------------------------------------------------------
