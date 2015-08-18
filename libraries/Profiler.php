@@ -360,11 +360,14 @@ class CI_Profiler
     {
         $renderer = $this->debugbar->getJavascriptRenderer();
         $renderer->setOptions($this->config);
+        
         $is_ajax = $this->CI->input->is_ajax_request();
-        $initialize = (!$is_ajax) ? true : false;
-        $assets = (!$is_ajax) ? $this->getAssets($renderer) : null;
+        $is_json = $this->isJsonOutput();
+        $is_sneaky = ($is_ajax || $is_json) ? TRUE : FALSE;
+        $initialize = (!$is_sneaky) ? TRUE : FALSE;
+        $assets = (!$is_sneaky) ? $this->getAssets($renderer) : null;
 
-        if ($is_ajax && $this->isJsonOutput()) {
+        if ($is_ajax && $is_json) {
             $use_open_handler = $this->setStorage();
             $this->debugbar->sendDataInHeaders($use_open_handler);
             return;
