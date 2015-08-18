@@ -18,7 +18,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   | data are displayed when the Profiler is enabled.
   |
  */
-
 $config['codeigniter_info'] = TRUE;
 $config['exceptions'] = TRUE;
 $config['messages'] = TRUE;
@@ -35,7 +34,6 @@ $config['php_info'] = TRUE;
   |	http://codeigniter.com/user_guide/general/profiling.html
   |
  */
-
 $config['benchmarks'] = TRUE;
 $config['config'] = TRUE;
 $config['controller_info'] = TRUE;
@@ -74,7 +72,6 @@ $config['query_toggle_count'] = 25;
   |   http://phpdebugbar.com/docs/rendering.html#rendering
   |
  */
-
 $config['base_url'] = NULL;
 $config['include_vendors'] = FALSE;
 $config['enable_jquery_noconflict'] = FALSE;
@@ -89,4 +86,4 @@ $config['open_handler_url'] = get_instance()->config->site_url('debug/open_handl
   | application/cache/debugbar/ directory. Use a full server path with trailing slash.
   |
  */
-$config['cache_path'] = '';
+$config['cache_path'] = APPPATH.'cache/debugbar/';
