@@ -363,16 +363,15 @@ class CI_Profiler
         
         $is_ajax = $this->CI->input->is_ajax_request();
         $is_json = $this->isJsonOutput();
-        $is_sneaky = ($is_ajax || $is_json) ? TRUE : FALSE;
-        $initialize = (!$is_sneaky) ? TRUE : FALSE;
+        $is_sneaky = ($is_ajax || $is_json) ? TRUE : FALSE;        
         $assets = (!$is_sneaky) ? $this->getAssets($renderer) : null;
 
-        if ($is_ajax && $is_json) {
+        if ($is_sneaky) {
             $use_open_handler = $this->setStorage();
             $this->debugbar->sendDataInHeaders($use_open_handler);
             return;
         } else {
-            return $assets.$renderer->render($initialize);
+            return $assets.$renderer->render(!$is_sneaky);
         }
     }
 
