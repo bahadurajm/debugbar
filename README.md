@@ -16,7 +16,14 @@ composer require maltyxx/debugbar
 ### Step 2 Configuration
 Duplicate configuration file `./application/third_party/debugbar/config/profiler.php` in `./application/config/profiler.php`.
 
-### Step 3 Examples
+### Step 3 Create files
+Create controller file in `/application/controllers/Debug.php`.
+```php
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+require(APPPATH.'/third_party/debugbar/controllers/Debug.php');
+
+### Step 4 Examples
 Controller file is located in `./application/core/MY_Controller.php`.
 ```php
 <?php
