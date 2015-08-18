@@ -22,6 +22,7 @@ Create controller file in `/application/controllers/Debug.php`.
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require(APPPATH.'/third_party/debugbar/controllers/Debug.php');
+```
 
 ### Step 4 Examples
 Controller file is located in `./application/core/MY_Controller.php`.
