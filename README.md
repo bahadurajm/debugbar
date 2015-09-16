@@ -14,6 +14,8 @@ composer require maltyxx/debugbar
 ```
 
 ### Step 2 Configuration
+Edit file `./application/config/config.php` set `$config['composer_autoload'] = FALSE;` to `$config['composer_autoload'] = FCPATH.'vendor/autoload.php';`
+
 Duplicate configuration file `./application/third_party/debugbar/config/profiler.php` in `./application/config/profiler.php`.
 
 ### Step 3 Create files
